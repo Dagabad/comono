@@ -7,7 +7,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      subscriberList: this.fillSubscriberListFromJson(),
+      subscriberList: this.fillSubscriberListFromJson()
 
       // Otra forma de llamar a lista
       // subscriberList: SubscriberData.map( (subscriber) => subscriber),
@@ -15,7 +15,7 @@ class App extends React.Component {
   }
 
   fillSubscriberListFromJson() {
-    let subscriberList = SubscriberData.map((subscriber) => {
+    let subscriberList = SubscriberData.map(subscriber => {
       return subscriber;
     });
 
@@ -23,39 +23,45 @@ class App extends React.Component {
   }
 
   render() {
-
     // Se puede usar para definirlo local, sin necesidad de escribir this.state
     // const {subscriberList} = this.state;
 
     return (
+      <div className="grid-container">
+        <div className="container">
 
-      <div>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Last Name</th>
-              <th>Age</th>
-              <th>Sport</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              this.state.subscriberList.map( (subscriber) => {
-                return(
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+                <th>Sport</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.subscriberList.map(subscriber => {
+                return (
                   <tr key={subscriber.id}>
                     <td>{subscriber.name}</td>
                     <td>{subscriber.lastName}</td>
                     <td>{subscriber.age}</td>
                     <td>{subscriber.sport}</td>
                   </tr>
-                )
-              })
-            }
-          </tbody>
-        </table>
+                );
+              })}
+            </tbody>
+          </table>
+
+          <div className="buttons-container">
+            <button type="button"> Sort by name</button>
+            <button type="button">Sort by age</button>
+            <button type="button">Sort by sport</button>
+          </div>
+
+        </div>
       </div>
-    )
+    );
   }
 }
 
