@@ -4,13 +4,15 @@ import SubscriberData from "./data/subscribers.json";
 import "./index.css";
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      subscriberList: this.fillSubscriberListFromJson()
+  constructor(props) {
+    super(props);
 
-      // Otra forma de llamar a lista
-      // subscriberList: SubscriberData.map( (subscriber) => subscriber),
+    // Por qué tengo que definir las funciones así?
+    this.sortByAge = this.sortByAge.bind(this);
+
+    this.state = {
+      subscriberList: this.fillSubscriberListFromJson(),
+      sortByAge: this.sortByAge.bind(this),
     };
   }
 
@@ -22,9 +24,22 @@ class App extends React.Component {
     return subscriberList;
   }
 
+  sortByAge(event) {
+    const {subscriberList} = this.state
+    let newSubscriberList = subscriberList.sort( (a, b) => {
+      return a.age - b.age
+    } );
+
+    this.setState({subscriberList: newSubscriberList});
+  }
+
+  // Sort by name
+
+  // Sort byy sport
+
   render() {
-    // Se puede usar para definirlo local, sin necesidad de escribir this.state
-    // const {subscriberList} = this.state;
+
+    const {subscriberList} = this.state;
 
     return (
       <div className="grid-container">
@@ -40,7 +55,7 @@ class App extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {this.state.subscriberList.map(subscriber => {
+              {subscriberList.map(subscriber => {
                 return (
                   <tr key={subscriber.id}>
                     <td>{subscriber.name}</td>
@@ -55,7 +70,7 @@ class App extends React.Component {
 
           <div className="buttons-container">
             <button type="button"> Sort by name</button>
-            <button type="button">Sort by age</button>
+            <button type="button" onClick={  this.sortByAge } >Sort by age</button>
             <button type="button">Sort by sport</button>
           </div>
 
