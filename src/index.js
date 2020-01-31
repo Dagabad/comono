@@ -10,6 +10,7 @@ class App extends React.Component {
     // Por qué tengo que definir las funciones así?
     this.sortByAge = this.sortByAge.bind(this);
     this.sortByName = this.sortByName.bind(this);
+    this.sortBySport = this.sortBySport.bind(this);
 
     this.state = {
       subscriberList: this.fillSubscriberListFromJson(),
@@ -34,17 +35,23 @@ class App extends React.Component {
     this.setState({subscriberList: newSubscriberList});
   }
 
-  // Sort by name
   sortByName(event) {
     const {subscriberList} = this.state
     let newSubscriberList = subscriberList.sort( (a, b) => {
-      return (a.name < b.name) ? -1 : 1 
+      return (a.name < b.name) ? -1 : 1; 
     } );
 
     this.setState({subscriberList: newSubscriberList});
   }
 
-  // Sort byy sport
+  sortBySport(event) {
+    const {subscriberList} = this.state
+    let newSubscriberList = subscriberList.sort( (a, b) => {
+      return (a.sport < b.sport) ? -1 : 1;
+    } );
+
+    this.setState({subscriberList: newSubscriberList});
+  }
 
   render() {
 
