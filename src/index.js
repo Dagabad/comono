@@ -87,7 +87,7 @@ class App extends React.Component {
           <div className="buttons-container">
             <button type="button" onClick={  this.sortByName } > Sort by name</button>
             <button type="button" onClick={  this.sortByAge } >Sort by age</button>
-            <button type="button">Sort by sport</button>
+            <button type="button" onClick={  this.sortBySport }>Sort by sport</button>
           </div>
 
         </div>
